@@ -59,8 +59,11 @@ defmodule NinetyNine.Utils do
 
   ## Examples
 
+      iex> NinetyNine.Utils.flatten([[1,2], 3, 4])
+      [1,2,3,4]
+
       iex> NinetyNine.Utils.flatten([1,2,3,4,[[6,7],8]])
-      [1,2,3,4,5,6,7,8]
+      [1,2,3,4,6,7,8]
 
       iex> NinetyNine.Utils.flatten([1,[2, [3]]])
       [1,2,3]
@@ -70,6 +73,7 @@ defmodule NinetyNine.Utils do
 
   """
   def flatten([]), do: []
-  def flatten([_h | _t]), do: :i_am_sleepy
+  def flatten([[_ | _] = frst | rst]), do: flatten(frst) ++ flatten(rst)
+  def flatten([x | xs]), do: [x] ++ flatten(xs)
   def flatten(_), do: nil
 end

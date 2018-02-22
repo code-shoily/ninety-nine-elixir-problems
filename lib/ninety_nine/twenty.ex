@@ -94,4 +94,24 @@ defmodule NinetyNine.Twenty do
 
   """
   def palindrome?(lst), do: lst === reverse(lst)
+
+  @doc """
+  [P07] Transform a list, possibly holding lists as elements into 
+  a `flat' list by replacing each list with its elements (recursively).
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.flatten_list([[1,2], 3, 4])
+      [1,2,3,4]
+
+      iex> NinetyNine.Twenty.flatten_list([1,2,3,4,[[6,7],8]])
+      [1,2,3,4,6,7,8]
+
+      iex> NinetyNine.Twenty.flatten_list([1,[2, [3]]])
+      [1,2,3]
+
+      iex> NinetyNine.Twenty.flatten_list([1,2,3,4,5])
+      [1,2,3,4,5]
+  """
+  def flatten_list(lst), do: flatten(lst)
 end

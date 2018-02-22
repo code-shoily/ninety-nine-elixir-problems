@@ -17,8 +17,8 @@ defmodule NinetyNine.Twenty do
 
   """
   def last_element([]), do: nil
-  def last_element([elem]), do: elem
-  def last_element([_ | t]), do: last_element(t)
+  def last_element([x]), do: x
+  def last_element([_ | xs]), do: last_element(xs)
 
   @doc """
   [P02] Find the last but one element of a list.
@@ -35,8 +35,8 @@ defmodule NinetyNine.Twenty do
       nil
 
   """
-  def last_but_one([a, _]), do: a
-  def last_but_one([_, b | rest]), do: last_but_one([b | rest])
+  def last_but_one([x, _]), do: x
+  def last_but_one([_, x | xs]), do: last_but_one([x | xs])
   def last_but_one(_), do: nil
 
   @doc """
@@ -48,7 +48,7 @@ defmodule NinetyNine.Twenty do
       3
 
   """
-  def kth_element(lst, idx), do: at(lst, idx)
+  def kth_element(xs, idx), do: at(xs, idx)
 
   @doc """
   [P04] Find the number of elements of a list.
@@ -62,7 +62,7 @@ defmodule NinetyNine.Twenty do
       3
 
   """
-  def number_of_elements(lst), do: len(lst)
+  def number_of_elements(xs), do: len(xs)
 
   @doc """
   [P05] Reverse a list.
@@ -79,7 +79,7 @@ defmodule NinetyNine.Twenty do
       []
 
   """
-  def reverse_list(lst), do: reverse(lst)
+  def reverse_list(xs), do: reverse(xs)
 
   @doc """
   [P06] Find out whether a list is a palindrome.
@@ -93,7 +93,7 @@ defmodule NinetyNine.Twenty do
       true
 
   """
-  def palindrome?(lst), do: lst === reverse(lst)
+  def palindrome?(xs), do: xs === reverse(xs)
 
   @doc """
   [P07] Transform a list, possibly holding lists as elements into 
@@ -113,7 +113,7 @@ defmodule NinetyNine.Twenty do
       iex> NinetyNine.Twenty.flatten_list([1,2,3,4,5])
       [1,2,3,4,5]
   """
-  def flatten_list(lst), do: flatten(lst)
+  def flatten_list(xs), do: flatten(xs)
 
   @doc """
   [P08] Eliminate consecutive duplicates of list elements.
@@ -130,6 +130,6 @@ defmodule NinetyNine.Twenty do
       [1,2,3,4]
   """
   def dup([]), do: []
-  def dup([a, b | c]) when a == b, do: dup([a] ++ c)
-  def dup([a | b]), do: [a] ++ dup(b)
+  def dup([x1, x2 | xs]) when x1 == x2, do: dup([x1] ++ xs)
+  def dup([x | xs]), do: [x] ++ dup(xs)
 end

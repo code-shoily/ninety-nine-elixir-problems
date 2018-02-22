@@ -3,8 +3,4 @@ defmodule NinetyNineTest do
   doctest NinetyNine.Utils
   doctest NinetyNine
   doctest NinetyNine.Twenty
-
-  test "greets the world" do
-    assert NinetyNine.hello() == :world
-  end
 end

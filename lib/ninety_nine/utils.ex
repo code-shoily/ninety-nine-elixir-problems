@@ -16,7 +16,7 @@ defmodule NinetyNine.Utils do
 
   """
   def len([]), do: 0
-  def len([_ | t]), do: 1 + len(t)
+  def len([_ | xs]), do: 1 + len(xs)
 
   @doc """
   Reverses a list. See `Enum.reverse`
@@ -34,7 +34,7 @@ defmodule NinetyNine.Utils do
 
   """
   def reverse([]), do: []
-  def reverse([h | t]), do: reverse(t) ++ [h]
+  def reverse([x | xs]), do: reverse(xs) ++ [x]
 
   @doc """
   Returns the n-th element of a list.
@@ -44,13 +44,13 @@ defmodule NinetyNine.Utils do
       iex> NinetyNine.Utils.at([1,2,3], 2)
       3
 
-      iex> NinetyNine.Utils.at([], 100)
-      nil
+      iex> NinetyNine.Utils.at([], -1)
+      :nil
 
   """
-  def at([h | _], 0), do: h
+  def at([x | _], 0), do: x
 
-  def at([_ | t], n) when n >= 0, do: at(t, n - 1)
+  def at([_ | xs], idx), do: at(xs, idx - 1)
 
   def at(_, _), do: nil
 
@@ -73,7 +73,7 @@ defmodule NinetyNine.Utils do
 
   """
   def flatten([]), do: []
-  def flatten([[_ | _] = frst | rst]), do: flatten(frst) ++ flatten(rst)
+  def flatten([[_ | _] = x | xs]), do: flatten(x) ++ flatten(xs)
   def flatten([x | xs]), do: [x] ++ flatten(xs)
   def flatten(_), do: nil
 end

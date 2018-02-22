@@ -39,4 +39,19 @@ defmodule NinetyNine.Utils do
   def at([h | t] = lst, n) when n >= 0, do: at(t, n - 1)
 
   def at(_, _), do: nil
+
+  @doc """
+  Flattens a nested list.
+
+    ##Usage
+    iex> NinetyNine.Utils.flatten([1,2,3,4,[[6,7],8]])
+    [1,2,3,4,5,6,7,8]
+    iex> NinetyNine.Utils.flatten([1,[2, [3]]])
+    [1,2,3]
+    iex> NinetyNine.Utils.flatten([1,2,3,4,5])
+    [1,2,3,4,5]
+  """
+  def flatten([]), do: []
+  def flatten([h | t]), do: :i_am_sleepy
+  def flatten(_), do: nil
 end

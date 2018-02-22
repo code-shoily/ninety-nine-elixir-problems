@@ -50,7 +50,7 @@ defmodule NinetyNine.Utils do
   """
   def at([h | _], 0), do: h
 
-  def at([h | t] = lst, n) when n >= 0, do: at(t, n - 1)
+  def at([_ | t], n) when n >= 0, do: at(t, n - 1)
 
   def at(_, _), do: nil
 

@@ -2,28 +2,36 @@ defmodule NinetyNine.Utils do
   @moduledoc """
   Reusable utility functions for the rest of the problems.
   """
+
   @doc """
   Length of a list.
 
-    ##Usage
-    iex> NinetyNine.Utils.len([])
-    0
-    iex> NinetyNine.Utils.len([1,2,3])
-    3
+  ## Examples
+
+      iex> NinetyNine.Utils.len([])
+      0
+
+      iex> NinetyNine.Utils.len([1,2,3])
+      3
+
   """
   def len([]), do: 0
-  def len([h | t]), do: 1 + len(t)
+  def len([_ | t]), do: 1 + len(t)
 
   @doc """
   Reverses a list. See `Enum.reverse`
 
-    ##Usage
-    iex> NinetyNine.Utils.reverse([1,2,3])
-    [3,2,1]
-    iex> NinetyNine.Utils.reverse([1])
-    [1]
-    iex> NinetyNine.Utils.reverse([])
-    []
+  ## Examples
+
+      iex> NinetyNine.Utils.reverse([1,2,3])
+      [3,2,1]
+
+      iex> NinetyNine.Utils.reverse([1])
+      [1]
+
+      iex> NinetyNine.Utils.reverse([])
+      []
+
   """
   def reverse([]), do: []
   def reverse([h | t]), do: reverse(t) ++ [h]
@@ -31,11 +39,14 @@ defmodule NinetyNine.Utils do
   @doc """
   Returns the n-th element of a list.
 
-    ##Usage
-    iex> NinetyNine.Utils.at([1,2,3], 2)
-    3
-    iex> NinetyNine.Utils.at([], 100)
-    nil
+  ## Examples
+
+      iex> NinetyNine.Utils.at([1,2,3], 2)
+      3
+
+      iex> NinetyNine.Utils.at([], 100)
+      nil
+
   """
   def at([h | _], 0), do: h
 
@@ -46,15 +57,19 @@ defmodule NinetyNine.Utils do
   @doc """
   Flattens a nested list.
 
-    ##Usage
-    iex> NinetyNine.Utils.flatten([1,2,3,4,[[6,7],8]])
-    [1,2,3,4,5,6,7,8]
-    iex> NinetyNine.Utils.flatten([1,[2, [3]]])
-    [1,2,3]
-    iex> NinetyNine.Utils.flatten([1,2,3,4,5])
-    [1,2,3,4,5]
+  ## Examples
+
+      iex> NinetyNine.Utils.flatten([1,2,3,4,[[6,7],8]])
+      [1,2,3,4,5,6,7,8]
+
+      iex> NinetyNine.Utils.flatten([1,[2, [3]]])
+      [1,2,3]
+
+      iex> NinetyNine.Utils.flatten([1,2,3,4,5])
+      [1,2,3,4,5]
+
   """
   def flatten([]), do: []
-  def flatten([h | t]), do: :i_am_sleepy
+  def flatten([_h | _t]), do: :i_am_sleepy
   def flatten(_), do: nil
 end

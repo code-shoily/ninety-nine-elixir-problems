@@ -114,4 +114,22 @@ defmodule NinetyNine.Twenty do
       [1,2,3,4,5]
   """
   def flatten_list(lst), do: flatten(lst)
+
+  @doc """
+  [P08] Eliminate consecutive duplicates of list elements.
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.dup([1,1,1,2,3,3,4,4,4,1,1,2,3,3,5])
+      [1,2,3,4,1,2,3,5]
+      
+      iex> NinetyNine.Twenty.dup([1,2,2,3,4])
+      [1,2,3,4]
+
+      iex> NinetyNine.Twenty.dup([1,2,3,4])
+      [1,2,3,4]
+  """
+  def dup([]), do: []
+  def dup([a, b | c]) when a == b, do: dup([a] ++ c)
+  def dup([a | b]), do: [a] ++ dup(b)
 end

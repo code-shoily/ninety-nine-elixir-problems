@@ -1,4 +1,7 @@
 defmodule NinetyNine.Utils do
+  @moduledoc """
+  Reusable utility functions for the rest of the problems.
+  """
   @doc """
   Length of a list.
 

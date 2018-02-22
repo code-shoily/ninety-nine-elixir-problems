@@ -1,4 +1,7 @@
 defmodule NinetyNine.Twenty do
+  @moduledoc """
+  First twenty problems. [P01 ~ P20]
+  """
   import NinetyNine.Utils
 
   @doc """

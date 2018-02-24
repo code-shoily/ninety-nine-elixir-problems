@@ -163,15 +163,35 @@ defmodule NinetyNine.Twenty do
   ## Examples
 
       iex> NinetyNine.Twenty.run_length_encoding([:a,:b,:c,:d])
-      [[1, :a], [1, :b], [1, :c], [1, :d]]
+      [{1, :a}, {1, :b}, {1, :c}, {1, :d}]
 
       iex> NinetyNine.Twenty.run_length_encoding([])
       []
 
       iex> NinetyNine.Twenty.run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
-      [[4,:a],[3,:b], [1, :c], [1, :a]]
+      [{4,:a},{3,:b}, {1, :c}, {1, :a}]
   """
   def run_length_encoding(lst) do
-    for [x | _] = xs <- lst |> pack_repetitions(), do: [len(xs), x]
+    for [x | _] = xs <- lst |> pack_repetitions(), do: {len(xs), x}
+  end
+
+  @doc """
+  [P11] Modified Run-length encoding of a list.
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.modified_run_length_encoding([:a,:b,:c,:d])
+      [:a, :b, :c, :d]
+
+      iex> NinetyNine.Twenty.modified_run_length_encoding([])
+      []
+
+      iex> NinetyNine.Twenty.modified_run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
+      [{4,:a},{3,:b}, :c, :a]
+  """
+  def modified_run_length_encoding(lst) do
+    for {size, elem} = item <- lst |> run_length_encoding() do
+      if size == 1, do: elem, else: item
+    end
   end
 end

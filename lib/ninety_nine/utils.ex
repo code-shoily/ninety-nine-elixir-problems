@@ -31,8 +31,8 @@ defmodule NinetyNine.Utils do
   """
   def repeat(a, n), do: repeat(a, n + 1, [])
 
-  def repeat(a, 0, _), do: []
-  def repeat(a, 1, lst), do: lst
+  def repeat(_, 0, _), do: []
+  def repeat(_, 1, lst), do: lst
   def repeat(a, n, lst), do: repeat(a, n - 1, [a | lst])
 
   @doc """
@@ -50,8 +50,9 @@ defmodule NinetyNine.Utils do
       []
 
   """
-  def reverse([]), do: []
-  def reverse([x | xs]), do: reverse(xs) ++ [x]
+  def reverse(xs), do: reverse(xs, [])
+  def reverse([], xs), do: xs
+  def reverse([x | xs], acc), do: reverse(xs, [x | acc])
 
   @doc """
   Returns the n-th element of a list.
@@ -73,6 +74,7 @@ defmodule NinetyNine.Utils do
 
   @doc """
   Flattens a nested list.
+  TODO: Optimize this one?
 
   ## Examples
 

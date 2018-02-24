@@ -156,4 +156,22 @@ defmodule NinetyNine.Twenty do
     |> reverse()
     |> tl()
   end
+
+  @doc """
+  [P10] Run-length encoding of a list.
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.run_length_encoding([:a,:b,:c,:d])
+      [[1, :a], [1, :b], [1, :c], [1, :d]]
+
+      iex> NinetyNine.Twenty.run_length_encoding([])
+      []
+
+      iex> NinetyNine.Twenty.run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
+      [[4,:a],[3,:b], [1, :c], [1, :a]]
+  """
+  def run_length_encoding(lst) do
+    for [x | _] = xs <- lst |> pack_repetitions(), do: [len(xs), x]
+  end
 end

@@ -15,8 +15,25 @@ defmodule NinetyNine.Utils do
       3
 
   """
-  def len([]), do: 0
-  def len([_ | xs]), do: 1 + len(xs)
+  def len(lst), do: len(lst, 0)
+  def len([], n), do: n
+  def len([_ | xs], n), do: len(xs, n + 1)
+
+  @doc """
+  Repeats each element n times
+
+  ## Examples
+      
+      iex> NinetyNine.Utils.repeat(:a, 3)
+      [:a, :a, :a]
+      iex> NinetyNine.Utils.repeat(:b, 0)
+      []
+  """
+  def repeat(a, n), do: repeat(a, n + 1, [])
+
+  def repeat(a, 0, _), do: []
+  def repeat(a, 1, lst), do: lst
+  def repeat(a, n, lst), do: repeat(a, n - 1, [a | lst])
 
   @doc """
   Reverses a list. See `Enum.reverse`

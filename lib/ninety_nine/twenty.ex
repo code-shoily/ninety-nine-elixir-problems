@@ -194,4 +194,24 @@ defmodule NinetyNine.Twenty do
       if size == 1, do: elem, else: item
     end
   end
+
+  @doc """
+  [P12] Decode a run-length encoded list.
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.run_length_decode([:a, :b, :c, :d])
+      [:a, :b, :c, :d]
+
+      iex> NinetyNine.Twenty.run_length_decode([{4,:a},{3,:b}, :c, :a])
+      [:a,:a,:a,:a,:b,:b,:b,:c,:a]
+  """
+  def run_length_decode(lst) do
+    lst
+    |> Enum.map(fn
+      {length, value} -> repeat(value, length)
+      value -> value
+    end)
+    |> flatten()
+  end
 end

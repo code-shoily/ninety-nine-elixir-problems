@@ -65,7 +65,7 @@ defmodule NinetyNine.Utils do
       iex> NinetyNine.Utils.flatten([1,2,3,4,[[6,7],8]])
       [1,2,3,4,6,7,8]
 
-      iex> NinetyNine.Utils.flatten([1,[2, [3]]])
+      iex> NinetyNine.Utils.flatten([1, [2, [3]]])
       [1,2,3]
 
       iex> NinetyNine.Utils.flatten([1,2,3,4,5])
@@ -76,4 +76,34 @@ defmodule NinetyNine.Utils do
   def flatten([[_ | _] = x | xs]), do: flatten(x) ++ flatten(xs)
   def flatten([x | xs]), do: [x] ++ flatten(xs)
   def flatten(_), do: nil
+
+  @doc """
+  Packs all elements of an enumerable into its own list.
+
+  ## Examples
+
+      iex> NinetyNine.Utils.sublistify([])
+      []
+
+      iex> NinetyNine.Utils.sublistify([1,2,2,3])
+      [[1], [2], [2], [3]]
+  """
+  def sublistify(xs) do
+    xs |> Enum.map(&[&1])
+  end
+
+  @doc """
+  Compares two lists and if their heads are the same, then
+  contatenates those elements, otherwise, returns both the lists.
+
+  ## Examples
+
+  """
+  def merge_if_equal([x | _] = xs, [[y | _] = ys | rest]) when x == y do
+    [xs ++ ys | rest]
+  end
+
+  def merge_if_equal(xs, ys) when is_list(xs) do
+    [xs | ys]
+  end
 end

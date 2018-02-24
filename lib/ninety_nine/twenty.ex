@@ -132,4 +132,28 @@ defmodule NinetyNine.Twenty do
   def dup([]), do: []
   def dup([x1, x2 | xs]) when x1 == x2, do: dup([x1] ++ xs)
   def dup([x | xs]), do: [x] ++ dup(xs)
+
+  @doc """
+  [P09] Pack consecutive duplicates of list elements into sublists.
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.pack_repetitions([1,2,3,4])
+      [[1], [2], [3], [4]]
+
+      iex> NinetyNine.Twenty.pack_repetitions([])
+      []
+
+      iex> NinetyNine.Twenty.pack_repetitions([1,1,1,1,2,2,2,3,3,1,1,3,4,2])
+      [[1,1,1,1],[2,2,2],[3,3],[1,1],[3],[4],[2]]
+  """
+  def pack_repetitions([]), do: []
+
+  def pack_repetitions(xs) do
+    [:end | xs]
+    |> sublistify()
+    |> Enum.reduce(&merge_if_equal(&1, &2))
+    |> reverse()
+    |> tl()
+  end
 end

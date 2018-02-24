@@ -1,6 +1,7 @@
 defmodule NinetyNineTest do
   use ExUnit.Case
-  doctest NinetyNine.Utils
   doctest NinetyNine
-  doctest NinetyNine.Twenty
+  doctest NinetyNine.Utils
+  doctest NinetyNine.FirstTen
+  doctest NinetyNine.ElevenToTwenty
 end

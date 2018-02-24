@@ -214,4 +214,39 @@ defmodule NinetyNine.Twenty do
     end)
     |> flatten()
   end
+
+  @doc """
+  [P13] Run-length encoding of a list (direct solution).
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.direct_run_length_encoding([:a,:b,:c,:d])
+      [:a, :b, :c, :d]
+
+      iex> NinetyNine.Twenty.direct_run_length_encoding([])
+      []
+
+      iex> NinetyNine.Twenty.direct_run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
+      [{4,:a},{3,:b}, :c, :a]
+  """
+  def direct_run_length_encoding(lst) do
+    for [x | _] = xs <- lst |> pack_repetitions() do
+      length = len(xs)
+
+      case length do
+        1 -> x
+        _ -> {length, x}
+      end
+    end
+  end
+
+  @doc """
+  [P14] Duplicate the elements of a list a given number of times.
+
+  ## Examples
+
+      iex> NinetyNine.Twenty.duplicate([:a, :b, :c])
+      [:a, :a, :b, :b, :c, :c]
+  """
+  def duplicate(lst), do: lst |> Enum.map(&repeat(&1, 2)) |> flatten()
 end

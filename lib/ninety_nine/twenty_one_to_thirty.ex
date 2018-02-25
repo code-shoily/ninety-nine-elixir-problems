@@ -2,6 +2,7 @@ defmodule NinetyNine.TwentyOneToThirty do
   @moduledoc """
   Problems 21 ~ 30 Solved
   """
+  import NinetyNine.Utils
 
   @doc """
   [P21] Insert an element at a given position into a list.

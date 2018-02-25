@@ -148,4 +148,11 @@ defmodule NinetyNine.Utils do
   def split_at(_, n, ctr, res) when n <= ctr, do: res
   def split_at([x | xs], n, ctr, [lst, _]), do: split_at(xs, n, ctr + 1, [lst ++ [x], xs])
   def split_at([], _, _, res), do: res
+
+  @doc """
+  Finds a number within the range given.
+  """
+  def rand_range(from, to) do
+    from + :rand.uniform(to)
+  end
 end

@@ -26,4 +26,27 @@ defmodule NinetyNine.TwentyOneToThirty do
     do: insert_at(xs, pos, item, ctr + 1, res ++ [item] ++ [x])
 
   def insert_at([], _, _, _, res), do: res
+
+  @doc """
+  [P22] Create a list containing all integers within a given range.
+
+  ## Examples
+      
+      iex> NinetyNine.TwentyOneToThirty.range(1, 1)
+      [1]
+
+      iex> NinetyNine.TwentyOneToThirty.range(1, 5)
+      [1,2,3,4,5]
+
+      iex> NinetyNine.TwentyOneToThirty.range(23, 21)
+      [23, 22, 21]
+  """
+  def range(a, b) when a <= b, do: range_up(a, b, [])
+  def range(a, b) when a > b, do: range_down(a, b, [])
+
+  def range_up(a, b, res) when a <= b, do: range_up(a + 1, b, res ++ [a])
+  def range_up(a, b, res) when a > b, do: res
+
+  def range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
+  def range_down(a, b, res) when a < b, do: res
 end

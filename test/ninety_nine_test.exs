@@ -4,4 +4,5 @@ defmodule NinetyNineTest do
   doctest NinetyNine.Utils
   doctest NinetyNine.FirstTen
   doctest NinetyNine.ElevenToTwenty
+  doctest NinetyNine.TwentyOneToThirty
 end

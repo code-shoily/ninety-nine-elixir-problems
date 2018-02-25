@@ -108,23 +108,17 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Example
       
-      iex> NinetyNine.ElevenToTwenty.split_at([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
+      iex> NinetyNine.ElevenToTwenty.split([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
       [[:a, :b, :c], [:d, :e, :f, :g, :h, :i, :k]]
 
-      iex> NinetyNine.ElevenToTwenty.split_at([1,2,3], -1)
+      iex> NinetyNine.ElevenToTwenty.split([1,2,3], -1)
       [[1,2,3], []]
 
-      iex> NinetyNine.ElevenToTwenty.split_at([1,2,3], 10)
+      iex> NinetyNine.ElevenToTwenty.split([1,2,3], 10)
       [[1,2,3], []]
 
   """
-  def split_at([], _), do: [[], []]
-  def split_at(lst, n) when n <= 0, do: [lst, []]
-  def split_at(lst, n), do: split_at(lst, n, 0, [[], []])
-
-  def split_at(_, n, ctr, res) when n <= ctr, do: res
-  def split_at([x | xs], n, ctr, [lst, _]), do: split_at(xs, n, ctr + 1, [lst ++ [x], xs])
-  def split_at([], _, _, res), do: res
+  def split(lst, n), do: NinetyNine.Utils.split_at(lst, n)
 
   @doc """
   [P18] Extract a slice from a list.

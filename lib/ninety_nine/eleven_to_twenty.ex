@@ -80,4 +80,23 @@ defmodule NinetyNine.ElevenToTwenty do
     |> Enum.map(&repeat(&1, 2))
     |> flatten()
   end
+
+  @doc """
+  Drop every N'th element from a list.
+
+  # Examples
+
+      iex> NinetyNine.ElevenToTwenty.drop_every([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
+      [:a, :b, :d, :e, :g, :h, :k]
+  """
+  def drop_every(lst, every), do: drop_every(lst, every, 1, [])
+  def drop_every([], _, _, lst), do: lst
+
+  def drop_every([_ | xs], every, ctr, lst) when rem(ctr, every) == 0 do
+    drop_every(xs, every, ctr + 1, lst)
+  end
+
+  def drop_every([x | xs], every, ctr, lst) do
+    drop_every(xs, every, ctr + 1, lst ++ [x])
+  end
 end

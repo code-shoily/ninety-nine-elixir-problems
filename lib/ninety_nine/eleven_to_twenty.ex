@@ -118,8 +118,8 @@ defmodule NinetyNine.ElevenToTwenty do
   def split_at([], _), do: [[], []]
   def split_at(lst, n) when n <= 0, do: [lst, []]
   def split_at(lst, n), do: split_at(lst, n, 0, [[], []])
-  def split_at(_, n, ctr, res) when n <= ctr, do: res
 
+  def split_at(_, n, ctr, res) when n <= ctr, do: res
   def split_at([x | xs], n, ctr, [lst, _]), do: split_at(xs, n, ctr + 1, [lst ++ [x], xs])
   def split_at([], _, _, res), do: res
 
@@ -151,8 +151,56 @@ defmodule NinetyNine.ElevenToTwenty do
   def slice(_, _, to, ctr, res) when ctr > to, do: res
   def slice([_ | xs], from, to, ctr, _) when ctr < from, do: slice(xs, from, to, ctr + 1, [])
 
-  def slice([x | xs], from, to, ctr, res) when ctr >= from and ctr <= to,
-    do: slice(xs, from, to, ctr + 1, res ++ [x])
+  def slice([x | xs], from, to, ctr, res), do: slice(xs, from, to, ctr + 1, res ++ [x])
 
   def slice([], _, _, _, _), do: []
+
+  @doc """
+  [P19] Rotate a list N places to the left.
+
+  ## Examples
+      
+      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], 0)
+      [1,2,3,4,5,6,7,8]
+
+      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], 5)
+      [6,7,8,1,2,3,4,5]
+
+      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], 3)
+      [4,5,6,7,8,1,2,3]
+
+      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], -2)
+      [7,8,1,2,3,4,5,6]
+  """
+  def rotate(lst, n) when n > 0 do
+    lst |> split_at(n) |> reverse() |> flatten()
+  end
+
+  def rotate(lst, n) when n < 0 do
+    lst |> rotate(len(lst) + n)
+  end
+
+  def rotate(lst, n) when n == 0, do: lst
+
+  @doc """
+  [P20] Remove the K'th element from a list.
+
+  ## Examples
+
+      iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 3)
+      [1,2,4,5]
+
+      iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 1)
+      [2,3,4,5]
+
+      iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 3)
+      [1,2,4,5]
+  """
+  def remove_at(lst, n) do
+    case split_at(lst, n - 1) do
+      [xs, [_ | ys]] -> xs ++ ys
+      [[_ | xs], []] -> xs
+      _ -> nil
+    end
+  end
 end

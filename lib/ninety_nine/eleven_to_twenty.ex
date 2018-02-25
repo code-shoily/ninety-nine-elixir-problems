@@ -1,4 +1,7 @@
 defmodule NinetyNine.ElevenToTwenty do
+  @moduledoc """
+  Problems from 11 ~ 20
+  """
   import NinetyNine.Utils
   import NinetyNine.FirstTen, only: [run_length_encoding: 1, pack_repetitions: 1]
 

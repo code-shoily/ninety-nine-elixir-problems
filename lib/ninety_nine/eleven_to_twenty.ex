@@ -108,9 +108,60 @@ defmodule NinetyNine.ElevenToTwenty do
       iex> NinetyNine.ElevenToTwenty.split_at([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
       [[:a, :b, :c], [:d, :e, :f, :g, :h, :i, :k]]
 
+      iex> NinetyNine.ElevenToTwenty.split_at([1,2,3], -1)
+      [[1,2,3], []]
+
+      iex> NinetyNine.ElevenToTwenty.split_at([1,2,3], 10)
+      [[1,2,3], []]
+
   """
+  def split_at([], _), do: [[], []]
+  def split_at(lst, n) when n <= 0, do: [lst, []]
   def split_at(lst, n), do: split_at(lst, n, 0, [[], []])
-  def split_at(_, n, ctr, res) when n == ctr, do: res
+  def split_at(_, n, ctr, res) when n <= ctr, do: res
 
   def split_at([x | xs], n, ctr, [lst, _]), do: split_at(xs, n, ctr + 1, [lst ++ [x], xs])
+  def split_at([], _, _, res), do: res
+
+  @doc """
+  [P18] Extract a slice from a list.
+
+  ## Examples
+
+      iex> NinetyNine.ElevenToTwenty.slice([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3, 7)
+      [:c, :d, :e, :f, :g]
+
+      iex> NinetyNine.ElevenToTwenty.slice([1], 100, 100)
+      nil
+
+      iex> NinetyNine.ElevenToTwenty.slice([1], 1, 1)
+      [1]
+
+      iex> NinetyNine.ElevenToTwenty.slice([1,2,3], -1, 2)
+      nil
+
+      iex> NinetyNine.ElevenToTwenty.slice([1,2,3], 100, 101)
+      []
+
+      iex> NinetyNine.ElevenToTwenty.slice([1,2,3], 200, 100)
+      nil
+  """
+  def slice(lst, from, to) when from == to do
+    case at(lst, from - 1) do
+      nil -> nil
+      _ -> [at(lst, from - 1)]
+    end
+  end
+
+  def slice(_, from, to) when from < 0 or to < 0, do: nil
+  def slice(_, from, to) when from > to, do: nil
+  def slice(lst, from, to), do: slice(lst, from, to, 1, [])
+
+  def slice(_, _, to, ctr, res) when ctr > to, do: res
+  def slice([_ | xs], from, to, ctr, _) when ctr < from, do: slice(xs, from, to, ctr + 1, [])
+
+  def slice([x | xs], from, to, ctr, res) when ctr >= from and ctr <= to,
+    do: slice(xs, from, to, ctr + 1, res ++ [x])
+
+  def slice([], _, _, _, _), do: []
 end

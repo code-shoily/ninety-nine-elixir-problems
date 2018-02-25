@@ -82,7 +82,7 @@ defmodule NinetyNine.ElevenToTwenty do
   end
 
   @doc """
-  Drop every N'th element from a list.
+  [P16] Drop every N'th element from a list.
 
   # Examples
 
@@ -99,4 +99,18 @@ defmodule NinetyNine.ElevenToTwenty do
   def drop_every([x | xs], every, ctr, lst) do
     drop_every(xs, every, ctr + 1, lst ++ [x])
   end
+
+  @doc """
+  [P17] Split a list into two parts; the length of the first part is given.
+
+  ## Example
+      
+      iex> NinetyNine.ElevenToTwenty.split_at([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
+      [[:a, :b, :c], [:d, :e, :f, :g, :h, :i, :k]]
+
+  """
+  def split_at(lst, n), do: split_at(lst, n, 0, [[], []])
+  def split_at(_, n, ctr, res) when n == ctr, do: res
+
+  def split_at([x | xs], n, ctr, [lst, _]), do: split_at(xs, n, ctr + 1, [lst ++ [x], xs])
 end

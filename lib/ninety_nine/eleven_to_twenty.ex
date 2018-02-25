@@ -132,29 +132,20 @@ defmodule NinetyNine.ElevenToTwenty do
       [:c, :d, :e, :f, :g]
 
       iex> NinetyNine.ElevenToTwenty.slice([1], 100, 100)
-      nil
+      []
 
       iex> NinetyNine.ElevenToTwenty.slice([1], 1, 1)
       [1]
 
       iex> NinetyNine.ElevenToTwenty.slice([1,2,3], -1, 2)
-      nil
+      [1, 2]
 
       iex> NinetyNine.ElevenToTwenty.slice([1,2,3], 100, 101)
       []
 
       iex> NinetyNine.ElevenToTwenty.slice([1,2,3], 200, 100)
-      nil
+      []
   """
-  def slice(lst, from, to) when from == to do
-    case at(lst, from - 1) do
-      nil -> nil
-      _ -> [at(lst, from - 1)]
-    end
-  end
-
-  def slice(_, from, to) when from < 0 or to < 0, do: nil
-  def slice(_, from, to) when from > to, do: nil
   def slice(lst, from, to), do: slice(lst, from, to, 1, [])
 
   def slice(_, _, to, ctr, res) when ctr > to, do: res

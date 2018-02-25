@@ -199,11 +199,8 @@ defmodule NinetyNine.ElevenToTwenty do
       iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 3)
       [1,2,4,5]
   """
-  def remove_at(lst, n) do
-    case split_at(lst, n - 1) do
-      [xs, [_ | ys]] -> xs ++ ys
-      [[_ | xs], []] -> xs
-      _ -> nil
-    end
-  end
+  def remove_at(xs, n), do: remove_at(xs, n, 1, [])
+  def remove_at([], _, _, res), do: res
+  def remove_at([_ | xs], n, ctr, res) when ctr == n, do: res ++ xs
+  def remove_at([x | xs], n, ctr, res), do: remove_at(xs, n, ctr + 1, res ++ [x])
 end

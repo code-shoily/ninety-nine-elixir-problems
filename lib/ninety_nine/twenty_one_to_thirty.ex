@@ -72,14 +72,15 @@ defmodule NinetyNine.TwentyOneToThirty do
   @doc """
   [P24] Lotto: Draw N different random numbers from the set 1..M.
   """
-  def lotto() do
-    :random_number
+  def lotto(to, n) do
+    range(1, to)
+    |> random_selection(n)
   end
 
   @doc """
   [P25] Generate a random permutation of the elements of a list.
   """
-  def random_permutation(_lst) do
-    :random_permutation
+  def random_permutation(lst) do
+    lst |> random_selection(len(lst))
   end
 end

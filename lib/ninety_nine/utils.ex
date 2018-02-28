@@ -150,13 +150,6 @@ defmodule NinetyNine.Utils do
   def split_at([], _, _, res), do: res
 
   @doc """
-  Finds a number within the range given.
-  """
-  def rand_range(from, to) do
-    from + :rand.uniform(to)
-  end
-
-  @doc """
   Remove the K'th element from a list and return removed element and new list.
 
   ## Examples

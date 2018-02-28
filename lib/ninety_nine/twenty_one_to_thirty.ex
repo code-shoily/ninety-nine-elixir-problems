@@ -53,10 +53,29 @@ defmodule NinetyNine.TwentyOneToThirty do
 
   @doc """
   [P23] Extract a given number of randomly selected elements from a list.
+
+  # Test!
+
+      iex> NinetyNine.TwentyOneToThirty.random_selection([], 1)
+      nil
+      iex> lst = [12, 43, 65, 67]
+      iex> res = NinetyNine.TwentyOneToThirty.random_selection(lst, 2)
+      iex> res |> Enum.map(&(&1 in lst)) |> Enum.all?
+      true
+      iex> Enum.count(res) == 2
+      true
   """
-  def random_selection(lst) do
-    :random
+  def random_selection(lst, n), do: random_selection(lst, len(lst), n, [])
+
+  def random_selection(_, _, ctr, res) when ctr == 0, do: res
+  def random_selection(_, 0, ctr, _) when ctr >= 0 or ctr < 0, do: nil
+
+  def random_selection(lst, ln, ctr, res) do
+    {x, remaining} = remove_at(lst, :rand.uniform(ln))
+    random_selection(remaining, ln - 1, ctr - 1, res ++ [x])
   end
+
+  def random_selection([], _, _, res), do: res
 
   @doc """
   [P24] Lotto: Draw N different random numbers from the set 1..M.

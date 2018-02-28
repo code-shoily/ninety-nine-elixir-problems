@@ -174,4 +174,86 @@ defmodule NinetyNine.Utils do
   def remove_at([], _, _, res), do: res
   def remove_at([x | xs], n, ctr, {_, res}) when ctr == n, do: {x, res ++ xs}
   def remove_at([x | xs], n, ctr, {val, res}), do: remove_at(xs, n, ctr + 1, {val, res ++ [x]})
+
+  @doc """
+  Check if a list is a prefix of another list.
+
+  ## Examples
+
+      iex> NinetyNine.Utils.prefix?([1,2,3], [])
+      true
+      iex> NinetyNine.Utils.prefix?([1,2,3,4], [1,2])
+      true
+      iex> NinetyNine.Utils.prefix?([], [])
+      true
+      iex> NinetyNine.Utils.prefix?([1,2,3,4], [3,4])
+      false
+      iex> NinetyNine.Utils.prefix?([], [1])
+      false
+      iex> NinetyNine.Utils.prefix?([1,2,3], [1,2,4])
+      false
+      iex> NinetyNine.Utils.prefix?([], [1,2,3])
+      false
+
+  """
+  def prefix?(_, []), do: true
+  def prefix?([], [_ | _]), do: false
+  def prefix?([x | _], [y | _]) when x != y, do: false
+  def prefix?([_ | xs], [_ | ys]), do: prefix?(xs, ys)
+
+  @doc """
+  Check if a list is a suffix of another list.
+
+  ## Examples
+
+      iex> NinetyNine.Utils.suffix?([1,2,3], [])
+      true
+      iex> NinetyNine.Utils.suffix?([1,2,3,4], [1,2])
+      false
+      iex> NinetyNine.Utils.suffix?([], [])
+      true
+      iex> NinetyNine.Utils.suffix?([1,2,3,4], [3,4])
+      true
+      iex> NinetyNine.Utils.suffix?([], [1])
+      false
+      iex> NinetyNine.Utils.suffix?([1,2,3], [1,2,4])
+      false
+      iex> NinetyNine.Utils.suffix?([], [1,2,3])
+      false
+
+  """
+  def suffix?(xs, ys), do: prefix?(reverse(xs), reverse(ys))
+
+  @doc """
+  Check if a list is a subset of another list.
+
+  ## Examples
+
+      iex> NinetyNine.Utils.subset?([1,2,3], [])
+      true
+      iex> NinetyNine.Utils.subset?([1,2,3,4], [1,2])
+      true
+      iex> NinetyNine.Utils.subset?([], [])
+      true
+      iex> NinetyNine.Utils.subset?([1,2,3,4], [3,4])
+      true
+      iex> NinetyNine.Utils.subset?([1,2,3,4], [2,3])
+      true
+      iex> NinetyNine.Utils.subset?([1,2,3,4], [2])
+      true
+      iex> NinetyNine.Utils.subset?([], [1])
+      false
+      iex> NinetyNine.Utils.subset?([1,2,3], [1,2,4])
+      false
+      iex> NinetyNine.Utils.subset?([], [1,2,3])
+      false
+
+  """
+  def subset?([], [_ | _]), do: false
+  def subset?(xs, ys), do: subset?(xs, ys, ys == [])
+
+  def subset?(_, [], matching?), do: matching?
+  def subset?([x | _], [y | _], true) when x != y, do: false
+  def subset?([x | xs], [y | ys], _) when x == y, do: subset?(xs, ys, x == y)
+  def subset?([_ | xs], ys, matching?), do: subset?(xs, ys, matching?)
 end

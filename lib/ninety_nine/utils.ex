@@ -155,4 +155,23 @@ defmodule NinetyNine.Utils do
   def rand_range(from, to) do
     from + :rand.uniform(to)
   end
+
+  @doc """
+  Remove the K'th element from a list and return removed element and new list.
+
+  ## Examples
+
+      iex> NinetyNine.Utils.remove_at([1,2,3,4,5], 3)
+      {3, [1,2,4,5]}
+
+      iex> NinetyNine.Utils.remove_at([1,2,3,4,5], 1)
+      {1, [2,3,4,5]}
+
+      iex> NinetyNine.Utils.remove_at([1,2,3,4,5], 3)
+      {3, [1,2,4,5]}
+  """
+  def remove_at(xs, n), do: remove_at(xs, n, 1, {nil, []})
+  def remove_at([], _, _, res), do: res
+  def remove_at([x | xs], n, ctr, {_, res}) when ctr == n, do: {x, res ++ xs}
+  def remove_at([x | xs], n, ctr, {val, res}), do: remove_at(xs, n, ctr + 1, {val, res ++ [x]})
 end

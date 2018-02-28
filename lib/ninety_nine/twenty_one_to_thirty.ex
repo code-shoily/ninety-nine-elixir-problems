@@ -50,4 +50,25 @@ defmodule NinetyNine.TwentyOneToThirty do
 
   def range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
   def range_down(a, b, res) when a < b, do: res
+
+  @doc """
+  [P23] Extract a given number of randomly selected elements from a list.
+  """
+  def random_selection(lst) do
+    :random
+  end
+
+  @doc """
+  [P24] Lotto: Draw N different random numbers from the set 1..M.
+  """
+  def lotto() do
+    :random_number
+  end
+
+  @doc """
+  [P25] Generate a random permutation of the elements of a list.
+  """
+  def random_permutation(lst) do
+    :random_permutation
+  end
 end

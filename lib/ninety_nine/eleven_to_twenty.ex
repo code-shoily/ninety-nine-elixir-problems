@@ -184,17 +184,17 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 3)
+      iex> NinetyNine.ElevenToTwenty.remove([1,2,3,4,5], 3)
       [1,2,4,5]
 
-      iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 1)
+      iex> NinetyNine.ElevenToTwenty.remove([1,2,3,4,5], 1)
       [2,3,4,5]
 
-      iex> NinetyNine.ElevenToTwenty.remove_at([1,2,3,4,5], 3)
+      iex> NinetyNine.ElevenToTwenty.remove([1,2,3,4,5], 3)
       [1,2,4,5]
   """
-  def remove_at(xs, n), do: remove_at(xs, n, 1, [])
-  def remove_at([], _, _, res), do: res
-  def remove_at([_ | xs], n, ctr, res) when ctr == n, do: res ++ xs
-  def remove_at([x | xs], n, ctr, res), do: remove_at(xs, n, ctr + 1, res ++ [x])
+  def remove(xs, n) do
+    {_, res} = remove_at(xs, n)
+    res
+  end
 end

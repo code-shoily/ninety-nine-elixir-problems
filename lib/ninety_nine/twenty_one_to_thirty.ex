@@ -33,23 +33,16 @@ defmodule NinetyNine.TwentyOneToThirty do
 
   ## Examples
       
-      iex> NinetyNine.TwentyOneToThirty.range(1, 1)
+      iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(1, 1)
       [1]
 
-      iex> NinetyNine.TwentyOneToThirty.range(1, 5)
+      iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(1, 5)
       [1,2,3,4,5]
 
-      iex> NinetyNine.TwentyOneToThirty.range(23, 21)
+      iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(23, 21)
       [23, 22, 21]
   """
-  def range(a, b) when a <= b, do: range_up(a, b, [])
-  def range(a, b) when a > b, do: range_down(a, b, [])
-
-  def range_up(a, b, res) when a <= b, do: range_up(a + 1, b, res ++ [a])
-  def range_up(a, b, res) when a > b, do: res
-
-  def range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
-  def range_down(a, b, res) when a < b, do: res
+  def consequetive_numbers(a, b), do: range(a, b)
 
   @doc """
   [P23] Extract a given number of randomly selected elements from a list.
@@ -58,12 +51,13 @@ defmodule NinetyNine.TwentyOneToThirty do
 
       iex> NinetyNine.TwentyOneToThirty.random_selection([], 1)
       nil
-      iex> lst = [12, 43, 65, 67]
+      iex> lst = [112, 143, 165, 167]
       iex> res = NinetyNine.TwentyOneToThirty.random_selection(lst, 2)
       iex> res |> Enum.map(&(&1 in lst)) |> Enum.all?
       true
       iex> Enum.count(res) == 2
-      true
+      true   
+
   """
   def random_selection(lst, n), do: random_selection(lst, len(lst), n, [])
 

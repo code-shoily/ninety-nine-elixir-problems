@@ -256,4 +256,27 @@ defmodule NinetyNine.Utils do
   def subset?([x | _], [y | _], true) when x != y, do: false
   def subset?([x | xs], [y | ys], _) when x == y, do: subset?(xs, ys, x == y)
   def subset?([_ | xs], ys, matching?), do: subset?(xs, ys, matching?)
+
+  @doc """
+  [P22] Create a list containing all integers within a given range.
+
+  ## Examples
+      
+      iex> NinetyNine.Utils.range(1, 1)
+      [1]
+
+      iex> NinetyNine.Utils.range(1, 5)
+      [1,2,3,4,5]
+
+      iex> NinetyNine.Utils.range(23, 21)
+      [23, 22, 21]
+  """
+  def range(a, b) when a <= b, do: range_up(a, b, [])
+  def range(a, b) when a > b, do: range_down(a, b, [])
+
+  defp range_up(a, b, res) when a <= b, do: range_up(a + 1, b, res ++ [a])
+  defp range_up(a, b, res) when a > b, do: res
+
+  defp range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
+  defp range_down(a, b, res) when a < b, do: res
 end

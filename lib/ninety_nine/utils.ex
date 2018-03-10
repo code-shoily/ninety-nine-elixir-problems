@@ -23,7 +23,7 @@ defmodule NinetyNine.Utils do
   Repeats each element n times
 
   ## Examples
-      
+
       iex> NinetyNine.Utils.repeat(:a, 3)
       [:a, :a, :a]
       iex> NinetyNine.Utils.repeat(:b, 0)
@@ -130,7 +130,7 @@ defmodule NinetyNine.Utils do
   [P17] Split a list into two parts; the length of the first part is given.
 
   ## Example
-      
+
       iex> NinetyNine.Utils.split_at([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
       [[:a, :b, :c], [:d, :e, :f, :g, :h, :i, :k]]
 
@@ -254,7 +254,7 @@ defmodule NinetyNine.Utils do
   [P22] Create a list containing all integers within a given range.
 
   ## Examples
-      
+
       iex> NinetyNine.Utils.range(1, 1)
       [1]
 

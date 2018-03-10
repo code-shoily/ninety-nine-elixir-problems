@@ -85,14 +85,14 @@ defmodule NinetyNine.TwentyOneToThirty do
   end
 
   @doc """
-  [P26] Generate the combinations of K distinct objects chosen from the N elements of a list
+  [P26] TODO: Generate the combinations of K distinct objects chosen from the N elements of a list
   """
   def combination(_xs, _k) do
     :implement_me
   end
 
   @doc """
-  [P27] Group the elements of a set into disjoint subsets.
+  [P27] TODO: Group the elements of a set into disjoint subsets.
   """
   def multinomial_coefficients(_lst, _mtx) do
     :implement_me

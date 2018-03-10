@@ -3,6 +3,7 @@ defmodule NinetyNine.Arithmetic do
   Solve the Arithmetic problems (31..41)
   """
   import NinetyNine.ListUtils, only: [len: 1]
+  import NinetyNine.List1, only: [run_length_encoding: 1]
 
   @doc """
   [P31] Determine whether a given integer number is prime.
@@ -85,4 +86,20 @@ defmodule NinetyNine.Arithmetic do
 
   def prime_factors(n, _, res) when n > 1, do: res ++ [n]
   def prime_factors(_, _, res), do: res
+
+  @doc """
+  [P36] Lists all the prime factors of number with multiplicity
+
+  ## Usage
+
+      iex> import NinetyNine.Arithmetic
+      iex> prime_factors_with_multiplicity(315)
+      [[3,2],[5,1],[7,1]]
+  """
+  def prime_factors_with_multiplicity(n) do
+    n
+    |> prime_factors()
+    |> run_length_encoding()
+    |> Enum.map(fn {i, j} -> [j, i] end)
+  end
 end

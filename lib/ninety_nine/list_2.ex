@@ -2,7 +2,7 @@ defmodule NinetyNine.List2 do
   @moduledoc """
   Problems from 11 ~ 20
   """
-  import NinetyNine.Utils
+  import NinetyNine.ListUtils
   import NinetyNine.List1, only: [run_length_encoding: 1, pack_repetitions: 1]
 
   @doc """
@@ -118,7 +118,7 @@ defmodule NinetyNine.List2 do
       [[1,2,3], []]
 
   """
-  def split(lst, n), do: NinetyNine.Utils.split_at(lst, n)
+  def split(lst, n), do: split_at(lst, n)
 
   @doc """
   [P18] Extract a slice from a list.

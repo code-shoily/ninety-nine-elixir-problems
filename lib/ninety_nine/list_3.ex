@@ -2,7 +2,7 @@ defmodule NinetyNine.List3 do
   @moduledoc """
   Problems 21 ~ 28 Solved
   """
-  import NinetyNine.Utils
+  import NinetyNine.ListUtils
 
   @doc """
   [P21] Insert an element at a given position into a list.

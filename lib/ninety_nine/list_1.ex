@@ -2,7 +2,7 @@ defmodule NinetyNine.List1 do
   @moduledoc """
   First ten problems. [P01 ~ P20]
   """
-  import NinetyNine.Utils
+  import NinetyNine.ListUtils
 
   @doc """
   [P01] Find the last element of a list.

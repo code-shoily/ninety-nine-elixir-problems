@@ -59,4 +59,30 @@ defmodule NinetyNine.Arithmetic do
       1..(n - 1)
       |> Enum.filter(&coprime?(&1, n))
       |> len()
+
+  @doc """
+  [P35] Lists all the prime factors of number
+
+  ## Usage
+
+      iex> import NinetyNine.Arithmetic
+      iex> prime_factors(315)
+      [3, 3, 5, 7]
+
+  """
+  def prime_factors(0), do: 0
+  def prime_factors(1), do: 1
+  def prime_factors(n), do: prime_factors(n, 2, [])
+  def prime_factors(_, 0, res), do: res
+
+  def prime_factors(n, ctr, res) when ctr * ctr <= n do
+    if rem(n, ctr) == 0 do
+      prime_factors(round(n / ctr), ctr, res ++ [ctr])
+    else
+      prime_factors(n, ctr + 1, res)
+    end
+  end
+
+  def prime_factors(n, _, res) when n > 1, do: res ++ [n]
+  def prime_factors(_, _, res), do: res
 end

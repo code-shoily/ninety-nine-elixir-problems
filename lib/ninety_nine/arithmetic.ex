@@ -2,6 +2,7 @@ defmodule NinetyNine.Arithmetic do
   @moduledoc """
   Solve the Arithmetic problems (31..41)
   """
+  import NinetyNine.MathUtils, only: [pow: 2]
   import NinetyNine.ListUtils, only: [len: 1]
   import NinetyNine.List1, only: [run_length_encoding: 1]
 
@@ -51,6 +52,13 @@ defmodule NinetyNine.Arithmetic do
 
   @doc """
   [P34] Calculate Euler's totient function phi(m).
+
+  ## Usage
+      iex> import NinetyNine.Arithmetic
+      iex> naive_phi(11)
+      10
+      iex> naive_phi(38)
+      18
   """
   def naive_phi(1), do: 1
   def naive_phi(n) when n < 1, do: :error
@@ -101,5 +109,24 @@ defmodule NinetyNine.Arithmetic do
     |> prime_factors()
     |> run_length_encoding()
     |> Enum.map(fn {i, j} -> [j, i] end)
+  end
+
+  @doc """
+  [P37] Calculate Euler's totient function phi(m) (improved).
+
+  ## Usage
+    iex> import NinetyNine.Arithmetic
+    iex> phi(11)
+    10
+    iex> phi(38)
+    18
+  """
+  def phi(n) do
+    n
+    |> prime_factors_with_multiplicity()
+    |> Enum.map(fn [p, m] ->
+      (p - 1) * pow(p, m - 1)
+    end)
+    |> Enum.reduce(&*/2)
   end
 end

@@ -11,10 +11,10 @@ defmodule NinetyNine.TwentyOneToThirty do
 
       iex> NinetyNine.TwentyOneToThirty.insert_at([1, 2, 3, 4, 5], 2, :x)
       [1, :x, 2, 3, 4, 5]
-      
+
       iex> NinetyNine.TwentyOneToThirty.insert_at([1, 2, 3, 4, 5], -1, :x)
       [1, 2, 3, 4, 5]
-      
+
       iex> NinetyNine.TwentyOneToThirty.insert_at([1, 2, 3, 4, 5], 100, :x)
       [1, 2, 3, 4, 5]
   """
@@ -32,7 +32,7 @@ defmodule NinetyNine.TwentyOneToThirty do
   [P22] Create a list containing all integers within a given range.
 
   ## Examples
-      
+
       iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(1, 1)
       [1]
 
@@ -56,7 +56,7 @@ defmodule NinetyNine.TwentyOneToThirty do
       iex> res |> Enum.map(&(&1 in lst)) |> Enum.all?
       true
       iex> Enum.count(res) == 2
-      true   
+      true
 
   """
   def random_selection(lst, n), do: random_selection(lst, len(lst), n, [])
@@ -82,5 +82,64 @@ defmodule NinetyNine.TwentyOneToThirty do
   """
   def random_permutation(lst) do
     lst |> random_selection(len(lst))
+  end
+
+  @doc """
+  [P26] Generate the combinations of K distinct objects chosen from the N elements of a list
+  """
+  def combination(_xs, _k) do
+    :implement_me
+  end
+
+  @doc """
+  [P27] Group the elements of a set into disjoint subsets.
+  """
+  def multinomial_coefficients(_lst, _mtx) do
+    :implement_me
+  end
+
+  @doc """
+  [P28] Sorting a list of lists according to length of sublists
+
+  ## Examples
+      iex> import NinetyNine.TwentyOneToThirty
+      NinetyNine.TwentyOneToThirty
+      iex> sublist_sort([])
+      []
+      iex> sublist_sort([[1,2,3]])
+      [[1,2,3]]
+      iex> sublist_sort([[1,2,3], [2], [1,2]])
+      [[2], [1,2], [1,2,3]]
+      iex> sublist_sort([1,2,3])
+      :error
+      iex> sublist_sort([[1,2],3,[4,5],[6]])
+      :error
+  """
+  def sublist_sort([]), do: []
+  def sublist_sort([_ | []] = lst), do: lst
+
+  def sublist_sort([_ | _] = lst) do
+    case len(lst) == lst |> Enum.filter(&is_list/1) |> len do
+      true -> sort_by_length(lst)
+      _ -> :error
+    end
+  end
+
+  def sublist_sort(_), do: :error
+
+  def sort_by_length([x | xs]) do
+    x_len = len(x)
+
+    smaller_than_x =
+      xs
+      |> Enum.filter(&(len(&1) <= x_len))
+      |> sublist_sort()
+
+    larger_than_x =
+      xs
+      |> Enum.filter(&(len(&1) > x_len))
+      |> sublist_sort()
+
+    smaller_than_x ++ [x] ++ larger_than_x
   end
 end

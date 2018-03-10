@@ -2,7 +2,7 @@ defmodule NinetyNineTest do
   use ExUnit.Case
   doctest NinetyNine
   doctest NinetyNine.Utils
-  doctest NinetyNine.FirstTen
-  doctest NinetyNine.ElevenToTwenty
-  doctest NinetyNine.TwentyOneToThirty
+  doctest NinetyNine.List1
+  doctest NinetyNine.List2
+  doctest NinetyNine.List3
 end

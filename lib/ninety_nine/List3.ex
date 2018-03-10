@@ -1,6 +1,6 @@
-defmodule NinetyNine.TwentyOneToThirty do
+defmodule NinetyNine.List3 do
   @moduledoc """
-  Problems 21 ~ 30 Solved
+  Problems 21 ~ 28 Solved
   """
   import NinetyNine.Utils
 
@@ -9,13 +9,13 @@ defmodule NinetyNine.TwentyOneToThirty do
 
   ## Examples
 
-      iex> NinetyNine.TwentyOneToThirty.insert_at([1, 2, 3, 4, 5], 2, :x)
+      iex> NinetyNine.List3.insert_at([1, 2, 3, 4, 5], 2, :x)
       [1, :x, 2, 3, 4, 5]
 
-      iex> NinetyNine.TwentyOneToThirty.insert_at([1, 2, 3, 4, 5], -1, :x)
+      iex> NinetyNine.List3.insert_at([1, 2, 3, 4, 5], -1, :x)
       [1, 2, 3, 4, 5]
 
-      iex> NinetyNine.TwentyOneToThirty.insert_at([1, 2, 3, 4, 5], 100, :x)
+      iex> NinetyNine.List3.insert_at([1, 2, 3, 4, 5], 100, :x)
       [1, 2, 3, 4, 5]
   """
   def insert_at(xs, pos, item), do: insert_at(xs, pos, item, 1, [])
@@ -33,13 +33,13 @@ defmodule NinetyNine.TwentyOneToThirty do
 
   ## Examples
 
-      iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(1, 1)
+      iex> NinetyNine.List3.consequetive_numbers(1, 1)
       [1]
 
-      iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(1, 5)
+      iex> NinetyNine.List3.consequetive_numbers(1, 5)
       [1,2,3,4,5]
 
-      iex> NinetyNine.TwentyOneToThirty.consequetive_numbers(23, 21)
+      iex> NinetyNine.List3.consequetive_numbers(23, 21)
       [23, 22, 21]
   """
   def consequetive_numbers(a, b), do: range(a, b)
@@ -49,10 +49,10 @@ defmodule NinetyNine.TwentyOneToThirty do
 
   # Test!
 
-      iex> NinetyNine.TwentyOneToThirty.random_selection([], 1)
+      iex> NinetyNine.List3.random_selection([], 1)
       nil
       iex> lst = [112, 143, 165, 167]
-      iex> res = NinetyNine.TwentyOneToThirty.random_selection(lst, 2)
+      iex> res = NinetyNine.List3.random_selection(lst, 2)
       iex> res |> Enum.map(&(&1 in lst)) |> Enum.all?
       true
       iex> Enum.count(res) == 2
@@ -102,8 +102,8 @@ defmodule NinetyNine.TwentyOneToThirty do
   [P28] Sorting a list of lists according to length of sublists
 
   ## Examples
-      iex> import NinetyNine.TwentyOneToThirty
-      NinetyNine.TwentyOneToThirty
+      iex> import NinetyNine.List3
+      NinetyNine.List3
       iex> sublist_sort([])
       []
       iex> sublist_sort([[1,2,3]])

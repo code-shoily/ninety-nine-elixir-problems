@@ -1,4 +1,4 @@
-defmodule NinetyNine.FirstTen do
+defmodule NinetyNine.List1 do
   @moduledoc """
   First ten problems. [P01 ~ P20]
   """
@@ -6,13 +6,13 @@ defmodule NinetyNine.FirstTen do
 
   @doc """
   [P01] Find the last element of a list.
-    
+
   ## Examples
 
-      iex> NinetyNine.FirstTen.last_element([1,2,3])
+      iex> NinetyNine.List1.last_element([1,2,3])
       3
 
-      iex> NinetyNine.FirstTen.last_element([])
+      iex> NinetyNine.List1.last_element([])
       nil
 
   """
@@ -25,13 +25,13 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.last_but_one([0,1,2,3])
+      iex> NinetyNine.List1.last_but_one([0,1,2,3])
       2
 
-      iex> NinetyNine.FirstTen.last_but_one([0])
+      iex> NinetyNine.List1.last_but_one([0])
       nil
 
-      iex> NinetyNine.FirstTen.last_but_one([])
+      iex> NinetyNine.List1.last_but_one([])
       nil
 
   """
@@ -44,7 +44,7 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.kth_element([1,2,3,4,5], 2)
+      iex> NinetyNine.List1.kth_element([1,2,3,4,5], 2)
       3
 
   """
@@ -55,10 +55,10 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.number_of_elements([])
+      iex> NinetyNine.List1.number_of_elements([])
       0
 
-      iex> NinetyNine.FirstTen.number_of_elements([1,2,3])
+      iex> NinetyNine.List1.number_of_elements([1,2,3])
       3
 
   """
@@ -69,13 +69,13 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.reverse_list([1,2,3])
+      iex> NinetyNine.List1.reverse_list([1,2,3])
       [3,2,1]
 
-      iex> NinetyNine.FirstTen.reverse_list([1])
+      iex> NinetyNine.List1.reverse_list([1])
       [1]
 
-      iex> NinetyNine.FirstTen.reverse_list([])
+      iex> NinetyNine.List1.reverse_list([])
       []
 
   """
@@ -86,31 +86,31 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.palindrome?([1,2,3,4,5])
+      iex> NinetyNine.List1.palindrome?([1,2,3,4,5])
       false
 
-      iex> NinetyNine.FirstTen.palindrome?([1,2,3,2,1])
+      iex> NinetyNine.List1.palindrome?([1,2,3,2,1])
       true
 
   """
   def palindrome?(xs), do: xs === reverse(xs)
 
   @doc """
-  [P07] Transform a list, possibly holding lists as elements into 
+  [P07] Transform a list, possibly holding lists as elements into
   a `flat' list by replacing each list with its elements (recursively).
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.flatten_list([[1,2], 3, 4])
+      iex> NinetyNine.List1.flatten_list([[1,2], 3, 4])
       [1,2,3,4]
 
-      iex> NinetyNine.FirstTen.flatten_list([1,2,3,4,[[6,7],8]])
+      iex> NinetyNine.List1.flatten_list([1,2,3,4,[[6,7],8]])
       [1,2,3,4,6,7,8]
 
-      iex> NinetyNine.FirstTen.flatten_list([1,[2, [3]]])
+      iex> NinetyNine.List1.flatten_list([1,[2, [3]]])
       [1,2,3]
 
-      iex> NinetyNine.FirstTen.flatten_list([1,2,3,4,5])
+      iex> NinetyNine.List1.flatten_list([1,2,3,4,5])
       [1,2,3,4,5]
   """
   def flatten_list(xs), do: flatten(xs)
@@ -120,13 +120,13 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.dup([1,1,1,2,3,3,4,4,4,1,1,2,3,3,5])
+      iex> NinetyNine.List1.dup([1,1,1,2,3,3,4,4,4,1,1,2,3,3,5])
       [1,2,3,4,1,2,3,5]
-      
-      iex> NinetyNine.FirstTen.dup([1,2,2,3,4])
+
+      iex> NinetyNine.List1.dup([1,2,2,3,4])
       [1,2,3,4]
 
-      iex> NinetyNine.FirstTen.dup([1,2,3,4])
+      iex> NinetyNine.List1.dup([1,2,3,4])
       [1,2,3,4]
   """
   def dup([]), do: []
@@ -138,13 +138,13 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.pack_repetitions([1,2,3,4])
+      iex> NinetyNine.List1.pack_repetitions([1,2,3,4])
       [[1], [2], [3], [4]]
 
-      iex> NinetyNine.FirstTen.pack_repetitions([])
+      iex> NinetyNine.List1.pack_repetitions([])
       []
 
-      iex> NinetyNine.FirstTen.pack_repetitions([1,1,1,1,2,2,2,3,3,1,1,3,4,2])
+      iex> NinetyNine.List1.pack_repetitions([1,1,1,1,2,2,2,3,3,1,1,3,4,2])
       [[1,1,1,1],[2,2,2],[3,3],[1,1],[3],[4],[2]]
   """
   def pack_repetitions([]), do: []
@@ -162,13 +162,13 @@ defmodule NinetyNine.FirstTen do
 
   ## Examples
 
-      iex> NinetyNine.FirstTen.run_length_encoding([:a,:b,:c,:d])
+      iex> NinetyNine.List1.run_length_encoding([:a,:b,:c,:d])
       [{1, :a}, {1, :b}, {1, :c}, {1, :d}]
 
-      iex> NinetyNine.FirstTen.run_length_encoding([])
+      iex> NinetyNine.List1.run_length_encoding([])
       []
 
-      iex> NinetyNine.FirstTen.run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
+      iex> NinetyNine.List1.run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
       [{4,:a},{3,:b}, {1, :c}, {1, :a}]
   """
   def run_length_encoding(lst) do

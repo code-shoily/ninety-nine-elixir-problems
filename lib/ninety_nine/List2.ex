@@ -1,22 +1,22 @@
-defmodule NinetyNine.ElevenToTwenty do
+defmodule NinetyNine.List2 do
   @moduledoc """
   Problems from 11 ~ 20
   """
   import NinetyNine.Utils
-  import NinetyNine.FirstTen, only: [run_length_encoding: 1, pack_repetitions: 1]
+  import NinetyNine.List1, only: [run_length_encoding: 1, pack_repetitions: 1]
 
   @doc """
   [P11] Modified Run-length encoding of a list.
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.modified_run_length_encoding([:a,:b,:c,:d])
+      iex> NinetyNine.List2.modified_run_length_encoding([:a,:b,:c,:d])
       [:a, :b, :c, :d]
 
-      iex> NinetyNine.ElevenToTwenty.modified_run_length_encoding([])
+      iex> NinetyNine.List2.modified_run_length_encoding([])
       []
 
-      iex> NinetyNine.ElevenToTwenty.modified_run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
+      iex> NinetyNine.List2.modified_run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
       [{4,:a},{3,:b}, :c, :a]
   """
   def modified_run_length_encoding(lst) do
@@ -30,10 +30,10 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.run_length_decode([:a, :b, :c, :d])
+      iex> NinetyNine.List2.run_length_decode([:a, :b, :c, :d])
       [:a, :b, :c, :d]
 
-      iex> NinetyNine.ElevenToTwenty.run_length_decode([{4,:a},{3,:b}, :c, :a])
+      iex> NinetyNine.List2.run_length_decode([{4,:a},{3,:b}, :c, :a])
       [:a,:a,:a,:a,:b,:b,:b,:c,:a]
   """
   def run_length_decode(lst) do
@@ -50,13 +50,13 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.direct_run_length_encoding([:a,:b,:c,:d])
+      iex> NinetyNine.List2.direct_run_length_encoding([:a,:b,:c,:d])
       [:a, :b, :c, :d]
 
-      iex> NinetyNine.ElevenToTwenty.direct_run_length_encoding([])
+      iex> NinetyNine.List2.direct_run_length_encoding([])
       []
 
-      iex> NinetyNine.ElevenToTwenty.direct_run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
+      iex> NinetyNine.List2.direct_run_length_encoding([:a,:a,:a,:a,:b,:b,:b,:c,:a])
       [{4,:a},{3,:b}, :c, :a]
   """
   def direct_run_length_encoding(lst) do
@@ -75,7 +75,7 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.duplicate([:a, :b, :c])
+      iex> NinetyNine.List2.duplicate([:a, :b, :c])
       [:a, :a, :b, :b, :c, :c]
   """
   def duplicate(lst) do
@@ -89,7 +89,7 @@ defmodule NinetyNine.ElevenToTwenty do
 
   # Examples
 
-      iex> NinetyNine.ElevenToTwenty.drop_every([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
+      iex> NinetyNine.List2.drop_every([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
       [:a, :b, :d, :e, :g, :h, :k]
   """
   def drop_every(lst, every), do: drop_every(lst, every, 1, [])
@@ -107,14 +107,14 @@ defmodule NinetyNine.ElevenToTwenty do
   [P17] Split a list into two parts; the length of the first part is given.
 
   ## Example
-      
-      iex> NinetyNine.ElevenToTwenty.split([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
+
+      iex> NinetyNine.List2.split([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
       [[:a, :b, :c], [:d, :e, :f, :g, :h, :i, :k]]
 
-      iex> NinetyNine.ElevenToTwenty.split([1,2,3], -1)
+      iex> NinetyNine.List2.split([1,2,3], -1)
       [[1,2,3], []]
 
-      iex> NinetyNine.ElevenToTwenty.split([1,2,3], 10)
+      iex> NinetyNine.List2.split([1,2,3], 10)
       [[1,2,3], []]
 
   """
@@ -125,22 +125,22 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.slice([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3, 7)
+      iex> NinetyNine.List2.slice([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3, 7)
       [:c, :d, :e, :f, :g]
 
-      iex> NinetyNine.ElevenToTwenty.slice([1], 100, 100)
+      iex> NinetyNine.List2.slice([1], 100, 100)
       []
 
-      iex> NinetyNine.ElevenToTwenty.slice([1], 1, 1)
+      iex> NinetyNine.List2.slice([1], 1, 1)
       [1]
 
-      iex> NinetyNine.ElevenToTwenty.slice([1,2,3], -1, 2)
+      iex> NinetyNine.List2.slice([1,2,3], -1, 2)
       [1, 2]
 
-      iex> NinetyNine.ElevenToTwenty.slice([1,2,3], 100, 101)
+      iex> NinetyNine.List2.slice([1,2,3], 100, 101)
       []
 
-      iex> NinetyNine.ElevenToTwenty.slice([1,2,3], 200, 100)
+      iex> NinetyNine.List2.slice([1,2,3], 200, 100)
       []
   """
   def slice(lst, from, to), do: slice(lst, from, to, 1, [])
@@ -156,17 +156,17 @@ defmodule NinetyNine.ElevenToTwenty do
   [P19] Rotate a list N places to the left.
 
   ## Examples
-      
-      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], 0)
+
+      iex> NinetyNine.List2.rotate([1,2,3,4,5,6,7,8], 0)
       [1,2,3,4,5,6,7,8]
 
-      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], 5)
+      iex> NinetyNine.List2.rotate([1,2,3,4,5,6,7,8], 5)
       [6,7,8,1,2,3,4,5]
 
-      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], 3)
+      iex> NinetyNine.List2.rotate([1,2,3,4,5,6,7,8], 3)
       [4,5,6,7,8,1,2,3]
 
-      iex> NinetyNine.ElevenToTwenty.rotate([1,2,3,4,5,6,7,8], -2)
+      iex> NinetyNine.List2.rotate([1,2,3,4,5,6,7,8], -2)
       [7,8,1,2,3,4,5,6]
   """
   def rotate(lst, n) when n > 0 do
@@ -184,13 +184,13 @@ defmodule NinetyNine.ElevenToTwenty do
 
   ## Examples
 
-      iex> NinetyNine.ElevenToTwenty.remove([1,2,3,4,5], 3)
+      iex> NinetyNine.List2.remove([1,2,3,4,5], 3)
       [1,2,4,5]
 
-      iex> NinetyNine.ElevenToTwenty.remove([1,2,3,4,5], 1)
+      iex> NinetyNine.List2.remove([1,2,3,4,5], 1)
       [2,3,4,5]
 
-      iex> NinetyNine.ElevenToTwenty.remove([1,2,3,4,5], 3)
+      iex> NinetyNine.List2.remove([1,2,3,4,5], 3)
       [1,2,4,5]
   """
   def remove(xs, n) do

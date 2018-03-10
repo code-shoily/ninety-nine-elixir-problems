@@ -104,6 +104,8 @@ defmodule NinetyNine.Arithmetic do
       iex> prime_factors_with_multiplicity(315)
       [[3,2],[5,1],[7,1]]
   """
+  def prime_factors_with_multiplicity(1), do: [[1, 1]]
+
   def prime_factors_with_multiplicity(n) do
     n
     |> prime_factors()
@@ -128,5 +130,23 @@ defmodule NinetyNine.Arithmetic do
       (p - 1) * pow(p, m - 1)
     end)
     |> Enum.reduce(&*/2)
+  end
+
+  @doc """
+  [P38] Compare the two methods of calculating Euler's totient function.
+
+  ## Tests
+      iex> import NinetyNine.Arithmetic
+      iex> 1..1000 |>
+      ...> Enum.map(&phi_bench/1) |>
+      ...> Enum.filter(fn {a, b} -> a > b end) |>
+      ...> Enum.all?()
+      true
+  """
+  def phi_bench(n) do
+    b_naive = NinetyNine.Benchmark.measure(&naive_phi/1, [n])
+    b_improved = NinetyNine.Benchmark.measure(&phi/1, [n])
+
+    {b_naive, b_improved}
   end
 end

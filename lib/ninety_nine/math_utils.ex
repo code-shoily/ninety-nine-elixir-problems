@@ -46,23 +46,4 @@ defmodule NinetyNine.MathUtils do
       false
   """
   def close_enough?(a, b, threshold \\ 0.001), do: abs_(a - b) <= threshold
-
-  @doc """
-  Lists all the factors of number
-  """
-  def factors(0), do: 0
-  def factors(1), do: 1
-  def factors(n), do: factors(n, 2, [])
-  def factors(_, 0, res), do: res
-
-  def factors(n, ctr, res) when ctr * ctr <= n do
-    if rem(n, ctr) == 0 do
-      factors(round(n / ctr), ctr, [ctr | res])
-    else
-      factors(n, ctr + 1, res)
-    end
-  end
-
-  def factors(n, _, res) when n > 1, do: [n | res]
-  def factors(_, _, res), do: res
 end

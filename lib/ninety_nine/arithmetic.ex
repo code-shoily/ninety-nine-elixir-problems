@@ -21,8 +21,8 @@ defmodule NinetyNine.Arithmetic do
   def prime?(n) when rem(n, 2) == 0, do: false
 
   def prime?(n) do
-    # TODO: Replace with SQRT
-    not (2..(n - 1)
+    # TODO: Implement your own SQRT
+    not (2..round(:math.sqrt(n))
          |> Enum.filter(&(rem(n, &1) == 0))
          |> Enum.any?())
   end

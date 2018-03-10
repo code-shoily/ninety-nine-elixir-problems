@@ -17,17 +17,13 @@ defmodule NinetyNine.Arithmetic do
       iex> prime?(9)
       false
   """
-  def prime?(n) when n <= 0, do: false
-  def prime?(n) when 0 < n and n <= 3, do: true
+  def prime?(n) when n <= 3, do: n > 1
 
   def prime?(n) when rem(n, 2) == 0, do: false
-
-  def prime?(n) do
-    # TODO: Implement your own SQRT
-    not (2..round(:math.sqrt(n))
-         |> Enum.filter(&(rem(n, &1) == 0))
-         |> Enum.any?())
-  end
+  def prime?(n), do: prime?(n, 2, true)
+  def prime?(n, ctr, res) when ctr >= n, do: res
+  def prime?(n, ctr, _) when rem(n, ctr) == 0, do: false
+  def prime?(n, ctr, _), do: prime?(n, ctr + 1, true)
 
   @doc """
   [P32] Determine the greatest common divisor of two positive integer numbers.

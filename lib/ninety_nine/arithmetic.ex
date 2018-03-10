@@ -2,6 +2,8 @@ defmodule NinetyNine.Arithmetic do
   @moduledoc """
   Solve the Arithmetic problems (31..41)
   """
+  import NinetyNine.ListUtils, only: [len: 1]
+
   @doc """
   [P31] Determine whether a given integer number is prime.
 
@@ -19,7 +21,7 @@ defmodule NinetyNine.Arithmetic do
   def prime?(n) when rem(n, 2) == 0, do: false
 
   def prime?(n) do
-    # TODO: Replace with SQRT and Increment by 2
+    # TODO: Replace with SQRT
     not (2..(n - 1)
          |> Enum.filter(&(rem(n, &1) == 0))
          |> Enum.any?())
@@ -45,4 +47,16 @@ defmodule NinetyNine.Arithmetic do
       true
   """
   def coprime?(x, y), do: gcd(x, y) == 1
+
+  @doc """
+  [P34] Calculate Euler's totient function phi(m).
+  """
+  def naive_phi(1), do: 1
+  def naive_phi(n) when n < 1, do: :error
+
+  def naive_phi(n),
+    do:
+      1..(n - 1)
+      |> Enum.filter(&coprime?(&1, n))
+      |> len()
 end

@@ -15,7 +15,10 @@ defmodule NinetyNine.ListUtils do
       3
 
   """
+  @spec len([a]) :: i when a: any, i: non_neg_integer
   def len(lst), do: len(lst, 0)
+
+  @spec len([any], i) :: i when i: non_neg_integer
   def len([], n), do: n
   def len([_ | xs], n), do: len(xs, n + 1)
 
@@ -29,8 +32,10 @@ defmodule NinetyNine.ListUtils do
       iex> NinetyNine.ListUtils.repeat(:b, 0)
       []
   """
+  @spec repeat(a, non_neg_integer) :: list(a) when a: any
   def repeat(a, n), do: repeat(a, n + 1, [])
 
+  @spec repeat(a, non_neg_integer, list(a)) :: list(a) when a: any
   def repeat(_, 0, _), do: []
   def repeat(_, 1, lst), do: lst
   def repeat(a, n, lst), do: repeat(a, n - 1, [a | lst])
@@ -50,7 +55,10 @@ defmodule NinetyNine.ListUtils do
       []
 
   """
+  @spec reverse([a]) :: list([a]) when a: any
   def reverse(xs), do: reverse(xs, [])
+
+  @spec reverse([a], [a]) :: list([a]) when a: any
   def reverse([], xs), do: xs
   def reverse([x | xs], acc), do: reverse(xs, [x | acc])
 
@@ -66,6 +74,7 @@ defmodule NinetyNine.ListUtils do
       :nil
 
   """
+  @spec at([a], i) :: a when a: any, i: non_neg_integer
   def at([x | _], 0), do: x
 
   def at([_ | xs], idx), do: at(xs, idx - 1)
@@ -91,6 +100,7 @@ defmodule NinetyNine.ListUtils do
       [1,2,3,4,5]
 
   """
+  @spec flatten([a]) :: [a] when a: any
   def flatten([]), do: []
   def flatten([[_ | _] = x | xs]), do: flatten(x) ++ flatten(xs)
   def flatten([x | xs]), do: [x] ++ flatten(xs)
@@ -107,6 +117,7 @@ defmodule NinetyNine.ListUtils do
       iex> NinetyNine.ListUtils.sublistify([1,2,2,3])
       [[1], [2], [2], [3]]
   """
+  @spec sublistify([a]) :: [[a]] when a: any
   def sublistify(xs) do
     xs |> Enum.map(&[&1])
   end
@@ -118,6 +129,7 @@ defmodule NinetyNine.ListUtils do
   ## Examples
 
   """
+  @spec merge_if_equal([a], [a]) :: [a] when a: any
   def merge_if_equal([x | _] = xs, [[y | _] = ys | rest]) when x == y do
     [xs ++ ys | rest]
   end
@@ -141,10 +153,12 @@ defmodule NinetyNine.ListUtils do
       [[1,2,3], []]
 
   """
+  @spec split_at([a], i) :: [a] when a: any, i: non_neg_integer
   def split_at([], _), do: [[], []]
   def split_at(lst, n) when n <= 0, do: [lst, []]
   def split_at(lst, n), do: split_at(lst, n, 0, [[], []])
 
+  @spec split_at([a], i, i, [a]) :: [a] when a: any, i: non_neg_integer
   def split_at(_, n, ctr, res) when n <= ctr, do: res
   def split_at([x | xs], n, ctr, [lst, _]), do: split_at(xs, n, ctr + 1, [lst ++ [x], xs])
   def split_at([], _, _, res), do: res
@@ -162,8 +176,16 @@ defmodule NinetyNine.ListUtils do
 
       iex> NinetyNine.ListUtils.remove_at([1,2,3,4,5], 3)
       {3, [1,2,4,5]}
+
+      iex> NinetyNine.ListUtils.remove_at([1,2,3,4,5], 0)
+      {nil, [1,2,3,4,5]}
   """
+  @spec remove_at([a], i) :: res
+        when a: any, i: non_neg_integer, res: {nil | i, [a]}
   def remove_at(xs, n), do: remove_at(xs, n, 1, {nil, []})
+
+  @spec remove_at([a], i, i, res) :: res
+        when a: any, i: non_neg_integer, res: {nil | i, [a]}
   def remove_at([], _, _, res), do: res
   def remove_at([x | xs], n, ctr, {_, res}) when ctr == n, do: {x, res ++ xs}
   def remove_at([x | xs], n, ctr, {val, res}), do: remove_at(xs, n, ctr + 1, {val, res ++ [x]})
@@ -189,6 +211,7 @@ defmodule NinetyNine.ListUtils do
       false
 
   """
+  @spec prefix?([a], [a]) :: boolean when a: any
   def prefix?(_, []), do: true
   def prefix?([], [_ | _]), do: false
   def prefix?([x | _], [y | _]) when x != y, do: false
@@ -215,6 +238,7 @@ defmodule NinetyNine.ListUtils do
       false
 
   """
+  @spec suffix?([a], [a]) :: boolean when a: any
   def suffix?(xs, ys), do: prefix?(reverse(xs), reverse(ys))
 
   @doc """
@@ -242,6 +266,7 @@ defmodule NinetyNine.ListUtils do
       false
 
   """
+  @spec subset?([a], [a]) :: boolean when a: any
   def subset?([], [_ | _]), do: false
   def subset?(xs, ys), do: subset?(xs, ys, ys == [])
 
@@ -264,12 +289,20 @@ defmodule NinetyNine.ListUtils do
       iex> NinetyNine.ListUtils.range(23, 21)
       [23, 22, 21]
   """
+  @spec range(i, i) :: [i] when i: non_neg_integer
   def range(a, b) when a <= b, do: range_up(a, b, [])
   def range(a, b) when a > b, do: range_down(a, b, [])
 
+  @spec range_up(i, i, [i]) :: [i] when i: non_neg_integer
   defp range_up(a, b, res) when a <= b, do: range_up(a + 1, b, res ++ [a])
   defp range_up(a, b, res) when a > b, do: res
 
+  @spec range_down(i, i, [i]) :: [i] when i: non_neg_integer
   defp range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
   defp range_down(a, b, res) when a < b, do: res
+
+  @spec combination([a], i) :: a when a: any, i: non_neg_integer
+  def combination(_xs, _number) do
+    :implement_me
+  end
 end

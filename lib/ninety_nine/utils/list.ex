@@ -301,6 +301,12 @@ defmodule NinetyNine.Utils.List do
   defp range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
   defp range_down(a, b, res) when a < b, do: res
 
+  def permutations([]), do: [[]]
+
+  def permutations(list) do
+    for elem <- list, rest <- permutations(list -- [elem]), do: [elem | rest]
+  end
+
   @spec combination([a], i) :: a when a: any, i: non_neg_integer
   def combination(_xs, _number) do
     :implement_me

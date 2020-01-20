@@ -241,7 +241,7 @@ defmodule NinetyNine.List do
   end
 
   @doc """
-  [P14] Duplicate the elements of a list a given number of times.
+  [P14] Duplicate the elements of a list.
 
   ## Examples
 
@@ -251,6 +251,21 @@ defmodule NinetyNine.List do
   def duplicate(lst) do
     lst
     |> Enum.map(&repeat(&1, 2))
+    |> flatten()
+  end
+
+  @doc """
+  [P15] Duplicate the elements of a list a given number of times.
+
+  ## Example
+
+    iex> NinetyNine.List.duplicate_n([:a, :b, :c], 3)
+    [:a, :a, :a, :b, :b, :b, :c, :c, :c]
+
+  """
+  def duplicate_n(lst, n) do
+    lst
+    |> Enum.map(&repeat(&1, n))
     |> flatten()
   end
 

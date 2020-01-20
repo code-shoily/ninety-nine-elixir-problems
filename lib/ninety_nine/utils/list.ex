@@ -1,4 +1,4 @@
-defmodule NinetyNine.ListUtils do
+defmodule NinetyNine.Utils.List do
   @moduledoc """
   Reusable utility functions for the rest of the problems.
   """
@@ -8,10 +8,10 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.len([])
+      iex> NinetyNine.Utils.List.len([])
       0
 
-      iex> NinetyNine.ListUtils.len([1,2,3])
+      iex> NinetyNine.Utils.List.len([1,2,3])
       3
 
   """
@@ -27,9 +27,9 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.repeat(:a, 3)
+      iex> NinetyNine.Utils.List.repeat(:a, 3)
       [:a, :a, :a]
-      iex> NinetyNine.ListUtils.repeat(:b, 0)
+      iex> NinetyNine.Utils.List.repeat(:b, 0)
       []
   """
   @spec repeat(a, non_neg_integer) :: list(a) when a: any
@@ -45,13 +45,13 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.reverse([1,2,3])
+      iex> NinetyNine.Utils.List.reverse([1,2,3])
       [3,2,1]
 
-      iex> NinetyNine.ListUtils.reverse([1])
+      iex> NinetyNine.Utils.List.reverse([1])
       [1]
 
-      iex> NinetyNine.ListUtils.reverse([])
+      iex> NinetyNine.Utils.List.reverse([])
       []
 
   """
@@ -67,10 +67,10 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.at([1,2,3], 2)
+      iex> NinetyNine.Utils.List.at([1,2,3], 2)
       3
 
-      iex> NinetyNine.ListUtils.at([], -1)
+      iex> NinetyNine.Utils.List.at([], -1)
       :nil
 
   """
@@ -87,16 +87,16 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.flatten([[1,2], 3, 4])
+      iex> NinetyNine.Utils.List.flatten([[1,2], 3, 4])
       [1,2,3,4]
 
-      iex> NinetyNine.ListUtils.flatten([1,2,3,4,[[6,7],8]])
+      iex> NinetyNine.Utils.List.flatten([1,2,3,4,[[6,7],8]])
       [1,2,3,4,6,7,8]
 
-      iex> NinetyNine.ListUtils.flatten([1, [2, [3]]])
+      iex> NinetyNine.Utils.List.flatten([1, [2, [3]]])
       [1,2,3]
 
-      iex> NinetyNine.ListUtils.flatten([1,2,3,4,5])
+      iex> NinetyNine.Utils.List.flatten([1,2,3,4,5])
       [1,2,3,4,5]
 
   """
@@ -111,10 +111,10 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.sublistify([])
+      iex> NinetyNine.Utils.List.sublistify([])
       []
 
-      iex> NinetyNine.ListUtils.sublistify([1,2,2,3])
+      iex> NinetyNine.Utils.List.sublistify([1,2,2,3])
       [[1], [2], [2], [3]]
   """
   @spec sublistify([a]) :: [[a]] when a: any
@@ -143,13 +143,13 @@ defmodule NinetyNine.ListUtils do
 
   ## Example
 
-      iex> NinetyNine.ListUtils.split_at([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
+      iex> NinetyNine.Utils.List.split_at([:a, :b, :c, :d, :e, :f, :g, :h, :i, :k], 3)
       [[:a, :b, :c], [:d, :e, :f, :g, :h, :i, :k]]
 
-      iex> NinetyNine.ListUtils.split_at([1,2,3], -1)
+      iex> NinetyNine.Utils.List.split_at([1,2,3], -1)
       [[1,2,3], []]
 
-      iex> NinetyNine.ListUtils.split_at([1,2,3], 10)
+      iex> NinetyNine.Utils.List.split_at([1,2,3], 10)
       [[1,2,3], []]
 
   """
@@ -168,16 +168,16 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.remove_at([1,2,3,4,5], 3)
+      iex> NinetyNine.Utils.List.remove_at([1,2,3,4,5], 3)
       {3, [1,2,4,5]}
 
-      iex> NinetyNine.ListUtils.remove_at([1,2,3,4,5], 1)
+      iex> NinetyNine.Utils.List.remove_at([1,2,3,4,5], 1)
       {1, [2,3,4,5]}
 
-      iex> NinetyNine.ListUtils.remove_at([1,2,3,4,5], 3)
+      iex> NinetyNine.Utils.List.remove_at([1,2,3,4,5], 3)
       {3, [1,2,4,5]}
 
-      iex> NinetyNine.ListUtils.remove_at([1,2,3,4,5], 0)
+      iex> NinetyNine.Utils.List.remove_at([1,2,3,4,5], 0)
       {nil, [1,2,3,4,5]}
   """
   @spec remove_at([a], i) :: res
@@ -195,19 +195,19 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.prefix?([1,2,3], [])
+      iex> NinetyNine.Utils.List.prefix?([1,2,3], [])
       true
-      iex> NinetyNine.ListUtils.prefix?([1,2,3,4], [1,2])
+      iex> NinetyNine.Utils.List.prefix?([1,2,3,4], [1,2])
       true
-      iex> NinetyNine.ListUtils.prefix?([], [])
+      iex> NinetyNine.Utils.List.prefix?([], [])
       true
-      iex> NinetyNine.ListUtils.prefix?([1,2,3,4], [3,4])
+      iex> NinetyNine.Utils.List.prefix?([1,2,3,4], [3,4])
       false
-      iex> NinetyNine.ListUtils.prefix?([], [1])
+      iex> NinetyNine.Utils.List.prefix?([], [1])
       false
-      iex> NinetyNine.ListUtils.prefix?([1,2,3], [1,2,4])
+      iex> NinetyNine.Utils.List.prefix?([1,2,3], [1,2,4])
       false
-      iex> NinetyNine.ListUtils.prefix?([], [1,2,3])
+      iex> NinetyNine.Utils.List.prefix?([], [1,2,3])
       false
 
   """
@@ -222,19 +222,19 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.suffix?([1,2,3], [])
+      iex> NinetyNine.Utils.List.suffix?([1,2,3], [])
       true
-      iex> NinetyNine.ListUtils.suffix?([1,2,3,4], [1,2])
+      iex> NinetyNine.Utils.List.suffix?([1,2,3,4], [1,2])
       false
-      iex> NinetyNine.ListUtils.suffix?([], [])
+      iex> NinetyNine.Utils.List.suffix?([], [])
       true
-      iex> NinetyNine.ListUtils.suffix?([1,2,3,4], [3,4])
+      iex> NinetyNine.Utils.List.suffix?([1,2,3,4], [3,4])
       true
-      iex> NinetyNine.ListUtils.suffix?([], [1])
+      iex> NinetyNine.Utils.List.suffix?([], [1])
       false
-      iex> NinetyNine.ListUtils.suffix?([1,2,3], [1,2,4])
+      iex> NinetyNine.Utils.List.suffix?([1,2,3], [1,2,4])
       false
-      iex> NinetyNine.ListUtils.suffix?([], [1,2,3])
+      iex> NinetyNine.Utils.List.suffix?([], [1,2,3])
       false
 
   """
@@ -246,23 +246,23 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.subset?([1,2,3], [])
+      iex> NinetyNine.Utils.List.subset?([1,2,3], [])
       true
-      iex> NinetyNine.ListUtils.subset?([1,2,3,4], [1,2])
+      iex> NinetyNine.Utils.List.subset?([1,2,3,4], [1,2])
       true
-      iex> NinetyNine.ListUtils.subset?([], [])
+      iex> NinetyNine.Utils.List.subset?([], [])
       true
-      iex> NinetyNine.ListUtils.subset?([1,2,3,4], [3,4])
+      iex> NinetyNine.Utils.List.subset?([1,2,3,4], [3,4])
       true
-      iex> NinetyNine.ListUtils.subset?([1,2,3,4], [2,3])
+      iex> NinetyNine.Utils.List.subset?([1,2,3,4], [2,3])
       true
-      iex> NinetyNine.ListUtils.subset?([1,2,3,4], [2])
+      iex> NinetyNine.Utils.List.subset?([1,2,3,4], [2])
       true
-      iex> NinetyNine.ListUtils.subset?([], [1])
+      iex> NinetyNine.Utils.List.subset?([], [1])
       false
-      iex> NinetyNine.ListUtils.subset?([1,2,3], [1,2,4])
+      iex> NinetyNine.Utils.List.subset?([1,2,3], [1,2,4])
       false
-      iex> NinetyNine.ListUtils.subset?([], [1,2,3])
+      iex> NinetyNine.Utils.List.subset?([], [1,2,3])
       false
 
   """
@@ -280,13 +280,13 @@ defmodule NinetyNine.ListUtils do
 
   ## Examples
 
-      iex> NinetyNine.ListUtils.range(1, 1)
+      iex> NinetyNine.Utils.List.range(1, 1)
       [1]
 
-      iex> NinetyNine.ListUtils.range(1, 5)
+      iex> NinetyNine.Utils.List.range(1, 5)
       [1,2,3,4,5]
 
-      iex> NinetyNine.ListUtils.range(23, 21)
+      iex> NinetyNine.Utils.List.range(23, 21)
       [23, 22, 21]
   """
   @spec range(i, i) :: [i] when i: non_neg_integer

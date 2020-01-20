@@ -1,4 +1,4 @@
-defmodule NinetyNine.Benchmark do
+defmodule NinetyNine.Utils.Benchmark do
   def measure(function, args \\ []) do
     function
     |> :timer.tc(args)

@@ -1,4 +1,4 @@
-defmodule NinetyNine.MathUtils do
+defmodule NinetyNine.Utils.Math do
   @moduledoc """
   Utilities for computing math functions
   """
@@ -7,7 +7,7 @@ defmodule NinetyNine.MathUtils do
   Raises a to the power b
 
   ## Usage
-    iex> import NinetyNine.MathUtils
+    iex> import NinetyNine.Utils.Math
     iex> pow(10, 0)
     1
     iex> pow(10, 1)
@@ -23,7 +23,7 @@ defmodule NinetyNine.MathUtils do
   Return the abs value.
 
   ## Usage
-      iex> import NinetyNine.MathUtils
+      iex> import NinetyNine.Utils.Math
       iex> (1 == abs_(-1)) and (1 == abs_(1))
       true
   """
@@ -35,7 +35,7 @@ defmodule NinetyNine.MathUtils do
 
   ## Usage
 
-      iex> import NinetyNine.MathUtils
+      iex> import NinetyNine.Utils.Math
       iex> close_enough?(10, 10.0001)
       true
       iex> close_enough?(10, 9.9999)

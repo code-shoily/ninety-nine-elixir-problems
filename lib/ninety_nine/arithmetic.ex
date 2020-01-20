@@ -1,10 +1,12 @@
 defmodule NinetyNine.Arithmetic do
   @moduledoc """
-  Solve the Arithmetic problems (31..41)
+  Solve the Arithmetic problems
   """
-  import NinetyNine.MathUtils, only: [pow: 2]
-  import NinetyNine.ListUtils, only: [len: 1]
-  import NinetyNine.List1, only: [run_length_encoding: 1]
+  alias NinetyNine.Utils.Benchmark
+
+  import NinetyNine.Utils.Math, only: [pow: 2]
+  import NinetyNine.Utils.List, only: [len: 1]
+  import NinetyNine.List, only: [run_length_encoding: 1]
 
   @doc """
   [P31] Determine whether a given integer number is prime.
@@ -140,8 +142,8 @@ defmodule NinetyNine.Arithmetic do
       true
   """
   def phi_bench(n) do
-    b_naive = NinetyNine.Benchmark.measure(&naive_phi/1, [n])
-    b_improved = NinetyNine.Benchmark.measure(&phi/1, [n])
+    b_naive = Benchmark.measure(&naive_phi/1, [n])
+    b_improved = Benchmark.measure(&phi/1, [n])
 
     {b_naive, b_improved}
   end

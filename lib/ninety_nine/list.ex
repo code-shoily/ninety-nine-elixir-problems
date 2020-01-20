@@ -426,7 +426,7 @@ defmodule NinetyNine.List do
   @doc """
   [P23] Extract a given number of randomly selected elements from a list.
 
-  # Test!
+  ## Example
 
       iex> NinetyNine.List.random_selection([], 1)
       nil
@@ -450,6 +450,14 @@ defmodule NinetyNine.List do
 
   @doc """
   [P24] Lotto: Draw N different random numbers from the set 1..M.
+
+  ## Example
+
+    iex> values = NinetyNine.List.lotto(49, 5)
+    iex> length(values)
+    5
+    iex> Enum.all?(values, fn x -> x < 49 end)
+    true
   """
   def lotto(to, n) do
     range(1, to)
@@ -467,14 +475,14 @@ defmodule NinetyNine.List do
   [P26] TODO: Generate the combinations of K distinct objects chosen from the N elements of a list
   """
   def combination(_xs, _k) do
-    :implement_me
+    raise "Not implemented"
   end
 
   @doc """
   [P27] TODO: Group the elements of a set into disjoint subsets.
   """
   def multinomial_coefficients(_lst, _mtx) do
-    :implement_me
+    raise "Not implemented"
   end
 
   @doc """

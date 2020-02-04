@@ -473,9 +473,18 @@ defmodule NinetyNine.List do
 
   @doc """
   [P26] TODO: Generate the combinations of K distinct objects chosen from the N elements of a list
+
+    ## Example
+
+      iex> NinetyNine.List.combination([1,2,3], 3)
+      [[1, 2, 3]]
+      iex> NinetyNine.List.combination([1,2,3], 2)
+      [[1, 2], [1, 3], [2, 3]]
+      iex> NinetyNine.List.combination([1,2,3], 1)
+      [[1], [2], [3]]
   """
-  def combination(_xs, _k) do
-    raise "Not implemented"
+  def combination(xs, k) do
+    combinations(xs, k)
   end
 
   @doc """

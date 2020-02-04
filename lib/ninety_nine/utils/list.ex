@@ -301,14 +301,43 @@ defmodule NinetyNine.Utils.List do
   defp range_down(a, b, res) when a >= b, do: range_down(a - 1, b, res ++ [a])
   defp range_down(a, b, res) when a < b, do: res
 
+  @doc """
+  Returns all permutations of a list.
+
+    ## Example
+
+      iex> NinetyNine.Utils.List.permutations([])
+      [[]]
+      iex> NinetyNine.Utils.List.permutations([1])
+      [[1]]
+      iex> NinetyNine.Utils.List.permutations([1, 2, 3])
+      [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+  """
+  @spec permutations(list(any)) :: list(list(any))
   def permutations([]), do: [[]]
 
   def permutations(list) do
     for elem <- list, rest <- permutations(list -- [elem]), do: [elem | rest]
   end
 
-  @spec combination([a], i) :: a when a: any, i: non_neg_integer
-  def combination(_xs, _number) do
-    :implement_me
+  @doc """
+  Finds nCr.
+
+    ## Example
+
+      iex> NinetyNine.Utils.List.combinations([1,2,3], 3)
+      [[1, 2, 3]]
+      iex> NinetyNine.Utils.List.combinations([1,2,3], 2)
+      [[1, 2], [1, 3], [2, 3]]
+      iex> NinetyNine.Utils.List.combinations([1,2,3], 1)
+      [[1], [2], [3]]
+  """
+  @spec combinations(list(any), non_neg_integer()) :: list(list(any))
+  def combinations(xs, n)
+  def combinations(_xs, 0), do: [[]]
+  def combinations(xs = [], _n), do: xs
+  def combinations([head | tail], n) do
+    Enum.map(combinations(tail, n - 1), &[head | &1]) ++
+      combinations(tail, n)
   end
 end
